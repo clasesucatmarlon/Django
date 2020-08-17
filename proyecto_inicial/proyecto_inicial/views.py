@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 import datetime
+from django.template import Template, Context
 
 # crear vista
 
@@ -9,15 +10,21 @@ def saludo_inicial(request):
     Función primera vista que devuelve una respuesta
     Luego hay que linkear esta función con el archivos urls
     """
-    mensaje = """
-    <html>
-        <body>
-            <h1 style="color:green">
-                Hola... Es mi primera página usando Django
-            </h1>
-        </body>
-    </html>
-    """
+    doc_externo = open(
+        "/home/marlon/Django/proyecto_inicial/proyecto_inicial/plantillas/entrada.html")
+
+    # crear objeto template.  Se puede llamar coo se quiera
+    planti = Template(doc_externo.read())
+
+    # cerrar el documnento
+    doc_externo.close()
+
+    # Crear contexto
+    contex = Context()
+
+    # Renderizar el documento
+    mensaje = planti.render(contex)
+
     return HttpResponse(mensaje)
 
 

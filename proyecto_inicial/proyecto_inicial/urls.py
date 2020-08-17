@@ -25,4 +25,5 @@ urlpatterns = [
     url('fechaactual/', darfecha),
     # https://stackoverrun.com/es/q/9311644
     url('edad/(?P<agno>\w+)', calcularedad),
+    # path('edad/<agno>', calcularedad)
 ]
