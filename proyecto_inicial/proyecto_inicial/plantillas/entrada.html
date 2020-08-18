@@ -13,15 +13,39 @@
         h1 {
             color: white;
             text-align: center;
-            font-size: 7em;
+            font-size: 6em;
+        }
+
+        h2 {
+            color: yellow;
+            text-align: center;
+            font-size: 4em;
+        }
+
+        h3 {
+
+            color: green;
+            text-align: center;
+            font-size: 3em;
         }
     </style>
 </head>
 
 <body>
-    <h1>
-        Hola... Es mi primera página usando Django y plantillas
-    </h1>
+    <h1>Hola <br> </h1>
+    <h2>{{nombre_persona.upper}} {{apellido_persona.upper}}</h2>
+    <h1>Página usando Django, plantillas y clases</h1>
+    <h2>hoy {{ahora.day}}/{{ahora.month}}/{{ahora.year}} tus skills son:</h2>
+
+    {% if skill%}
+    {% for lista in skill%}
+    <h3>{{lista}}</h3>
+    {% endfor %}
+    {% else%}
+    <h3>No tienes hasta ahora skill</h3>
+    {% endif %}
+
+
 </body>
 
 </html>

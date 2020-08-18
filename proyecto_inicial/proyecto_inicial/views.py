@@ -2,14 +2,39 @@ from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
 
+
+class Persona(object):
+    """ Class persona
+    """
+
+    def __init__(self, nombre, apellido):
+        """ Definir atributos
+        """
+        self.nombre = nombre
+        self.apellido = apellido
+
+
 # crear vista
-
-
 def saludo_inicial(request):
     """
     Función primera vista que devuelve una respuesta
     Luego hay que linkear esta función con el archivos urls
     """
+    # Crear instancias de persona
+    person1 = Persona("Marlon Aurelio", "GARCIA MORALES")
+
+    """# Variables
+    nombre = "Marlon"
+    apellido = "GARCIA"
+    """
+    fecha_actual = datetime.datetime.now()
+    hora = fecha_actual.hour
+    min = fecha_actual.minute
+    seg = fecha_actual.second
+    total = str(hora) + ':' + str(min) + ':' + str(seg)
+
+    sk = ["Python", "Lenguaje C", "Bash", "MySQL"]
+
     doc_externo = open(
         "/home/marlon/Django/proyecto_inicial/proyecto_inicial/plantillas/entrada.html")
 
@@ -19,8 +44,9 @@ def saludo_inicial(request):
     # cerrar el documnento
     doc_externo.close()
 
-    # Crear contexto
-    contex = Context()
+    # Crear contexto con el diccionario
+    contex = Context(
+        {"nombre_persona": person1.nombre, "apellido_persona": person1.apellido, "ahora": fecha_actual, "skill": sk})
 
     # Renderizar el documento
     mensaje = planti.render(contex)
