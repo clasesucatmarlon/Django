@@ -32,14 +32,19 @@
 </head>
 
 <body>
+    {% include 'navegacion.html' %}
     <h1>Hola <br> </h1>
     <h2>{{nombre_persona.upper}} {{apellido_persona.upper}}</h2>
+    {% if nombre_persona == 'Marlon Aurelio' %}
+    <h1>Nombre correcto</h1>
+    {% endif %}
     <h1>Página usando Django, plantillas y clases</h1>
     <h2>hoy {{ahora.day}}/{{ahora.month}}/{{ahora.year}} tus skills son:</h2>
 
     {% if skill%}
     {% for lista in skill%}
     <h3>{{lista}}</h3>
+
     {% endfor %}
     {% else%}
     <h3>No tienes hasta ahora skill</h3>

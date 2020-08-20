@@ -54,7 +54,7 @@ ROOT_URLCONF = 'proyecto_inicial.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/home/marlon/Django/proyecto_inicial/proyecto_inicial/plantillas'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

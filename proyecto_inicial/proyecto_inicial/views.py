@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.template import loader  # imporar el cargador con todos sus métodos
+from django.shortcuts import render  # métodos abreviados
 
 
 class Persona(object):
@@ -35,23 +37,30 @@ def saludo_inicial(request):
 
     sk = ["Python", "Lenguaje C", "Bash", "MySQL"]
 
-    doc_externo = open(
-        "/home/marlon/Django/proyecto_inicial/proyecto_inicial/plantillas/entrada.html")
+    # cargar de manera manual
+    # doc_externo = open(
+    #    "/home/marlon/Django/proyecto_inicial/proyecto_inicial/plantillas/entrada.html")
 
     # crear objeto template.  Se puede llamar coo se quiera
-    planti = Template(doc_externo.read())
+    # planti = Template(doc_externo.read())
 
     # cerrar el documnento
-    doc_externo.close()
+    # doc_externo.close()
+
+    # cargar plantilla con cargador (archivo setting)
+    # doc_externo = loader.get_template('entrada.html')
 
     # Crear contexto con el diccionario
-    contex = Context(
-        {"nombre_persona": person1.nombre, "apellido_persona": person1.apellido, "ahora": fecha_actual, "skill": sk})
+    # contex = Context(
+    #    {"nombre_persona": person1.nombre, "apellido_persona": person1.apellido, "ahora": fecha_actual, "skill": sk})
+
+    contex = {"nombre_persona": person1.nombre,
+              "apellido_persona": person1.apellido, "ahora": fecha_actual, "skill": sk}
 
     # Renderizar el documento
-    mensaje = planti.render(contex)
+    # mensaje = doc_externo.render(contex)
 
-    return HttpResponse(mensaje)
+    return render(request, 'entrada.html', contex)
 
 
 def despedir(request):
